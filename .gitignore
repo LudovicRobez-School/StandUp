@@ -1,23 +1,56 @@
-# Compiled class file
+﻿# Jetbrains IDEs
+.idea/
+*.iml
+target/
 *.class
 
-# Log file
-*.log
+# Eclipse (a mettre à jour par quelqu'un qui l'utilise)
+.project
+.classpath
 
-# BlueJ files
-*.ctxt
+# Visual Studio Code
+.
 
-# Mobile Tools for Java (J2ME)
-.mtj.tmp/
+# Built application files
+/*/build/
 
-# Package Files #
-*.jar
-*.war
-*.nar
-*.ear
-*.zip
-*.tar.gz
-*.rar
+# Java class files
+*.class
 
-# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
-hs_err_pid*
+# Generated files
+bin/
+gen/
+out/
+
+# Intellij
+*.iml
+.idea
+
+# compiled output
+/dist
+/tmp
+/out-tsc
+
+# dependencies
+/node_modules
+
+# IDE - VSCode
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# misc
+/.sass-cache
+/connect.lock
+/coverage
+/libpeerconnection.log
+npm-debug.log
+yarn-error.log
+testem.log
+/typings
+
+# System Files
+.DS_Store
+Thumbs.db
