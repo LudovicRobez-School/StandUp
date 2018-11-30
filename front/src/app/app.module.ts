@@ -10,6 +10,7 @@ import { FooterComponent } from './element/footer/footer.component';
 import { HomeComponent } from './home/home.component';
 import { SharedModule } from './shared/shared.module';
 import { AboutComponent } from './about/about.component';
+import { GooglePlacesDirective } from './google-places.directive';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { AboutComponent } from './about/about.component';
     HeaderComponent,
     FooterComponent,
     HomeComponent,
-    AboutComponent
+    AboutComponent,
+    GooglePlacesDirective
   ],
   imports: [
     BrowserModule,
@@ -25,6 +27,7 @@ import { AboutComponent } from './about/about.component';
     ReactiveFormsModule,
     HttpClientModule,
     AppRoutingModule,
+    GooglePlacesDirective
   ],
   providers: [],
   bootstrap: [AppComponent]
