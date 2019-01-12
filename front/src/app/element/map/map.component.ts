@@ -55,20 +55,6 @@ export class MapComponent implements OnInit {
     /// Add map controls
     this.map.addControl(new mapboxgl.NavigationControl());
 
-    /// Add realtime firebase data on map load
-    this.map.on('load', (event) => {
-
-      /// register source
-      this.map.addSource('standup', {
-        type: 'geojson',
-        data: {
-          type: 'FeatureCollection',
-          features: []
-        }
-      });
-
-    })
-
   }
 
 }
