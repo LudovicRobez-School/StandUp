@@ -9,6 +9,8 @@ import { HomeComponent } from './home/home.component';
 import { SharedModule } from './shared.module';
 import { AboutComponent } from './about/about.component';
 import { UserModule } from './user/user.module';
+import { MapComponent } from './element/map/map.component';
+import { MapService } from './service/map.service';
 
 @NgModule({
   declarations: [
@@ -16,6 +18,7 @@ import { UserModule } from './user/user.module';
     HeaderComponent,
     FooterComponent,
     HomeComponent,
+    MapComponent,
     AboutComponent
   ],
   imports: [
@@ -24,7 +27,7 @@ import { UserModule } from './user/user.module';
     AppRoutingModule,
     UserModule
   ],
-  providers: [],
+  providers: [MapService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
