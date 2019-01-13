@@ -1,6 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
+import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
+import { InMemoryDataService }  from './service/in-memory-data.service';
+
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from "./app-routing.module";
 import { HeaderComponent } from './element/header/header.component';
@@ -25,6 +28,9 @@ import { MapService } from './service/map.service';
     BrowserModule,
     SharedModule,
     AppRoutingModule,
+    HttpClientInMemoryWebApiModule.forRoot(
+      InMemoryDataService, { dataEncapsulation: false }
+    ),
     UserModule
   ],
   providers: [MapService],
