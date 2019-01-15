@@ -7,6 +7,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import com.user.services.UserDAO;
+import com.user.services.UserDAOImpl;
+
 public class DAO {
 	private String url;
 	private String username;

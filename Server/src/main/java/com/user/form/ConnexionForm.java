@@ -16,7 +16,7 @@ public final class ConnexionForm extends Form_MD5{
 	private static final String CHAMP_EMAIL  = "email";
 	private static final String CHAMP_PASS   = "motdepasse";
 	private int status; 
-	private UserDAO adminDAO;
+	private UserDAO userDAO;
 
 
 	private String resultat;
@@ -35,7 +35,7 @@ public final class ConnexionForm extends Form_MD5{
 		String email = getValeurChamp( request, CHAMP_EMAIL );
 		String motDePasse = getValeurChamp( request, CHAMP_PASS );
 
-		User user = new user();
+		User user = new User();
 
 		/* Validation du champ email et mot de passe. */
 		try {
@@ -70,9 +70,9 @@ public final class ConnexionForm extends Form_MD5{
 		String password = this.MD5(getValeurChamp( request, CHAMP_PASS ));
 
 		DAO dao = DAO.getInstance();
-		this.UserDAO = dao.getUserDAO();
+		this.userDAO = dao.getUserDAO();
 
-		List<User> allUser = UserDAO.getAll();
+		List<User> allUser = userDAO.getAll();
 
 		for(int i = 0; i< allUser.size();i++)
 		{

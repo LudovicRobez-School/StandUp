@@ -5,8 +5,8 @@ package com.user.services;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-import com.user.services.*;
 import com.db.DAO;
+
 
 public class UserDAOImpl implements UserDAO{
 	private DAO dao;
