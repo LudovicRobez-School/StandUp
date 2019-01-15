@@ -1,0 +1,9 @@
+le nom "MDP" definit le password
+Le nom "Adresse" definit l'email
+Le nom "Prenom" definit le Prenom de l'utilisateur 
+le nom "Nom" definit le Nom de l'utilisateur
+
+Dans le code, ce qui à en commentaire est pas encore sur d'être integret au site. 
+Notament : - La confirmation du MDP
+	   - Le Pseudo. 
+
