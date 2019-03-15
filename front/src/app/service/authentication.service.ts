@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Output, EventEmitter } from '@angular/core';
 import { UserService } from './user.service';
 import { User } from '../model/user';
 import { Observable, of, throwError } from 'rxjs';
@@ -9,6 +9,7 @@ import { map, catchError } from 'rxjs/operators';
 })
 export class AuthenticationService {
   private users = Array<User>();
+  @Output() getLoggedUser: EventEmitter<User> = new EventEmitter();
 
   constructor(private userService: UserService) { }
 
@@ -20,6 +21,8 @@ export class AuthenticationService {
         user = this.users.find(user => user.email === email && user.password === password);
         if (user) {
           localStorage.setItem("currentUser", JSON.stringify(user));
+          // Envoyer un signal pour dire que la connexion a été établie
+          this.getLoggedUser.emit(user);
         }
         return user;
       })
@@ -29,6 +32,7 @@ export class AuthenticationService {
   logout() {
     // remove user from local storage to log user out
     localStorage.removeItem('currentUser');
+    console.log("Session deleted");
   }
 
   isConnected(): boolean {
@@ -38,5 +42,9 @@ export class AuthenticationService {
     } else {
       return false;
     }
+  }
+
+  getConnectedUser(): Observable<User> {
+    return of(JSON.parse(localStorage.getItem('currentUser')));
   }
 }

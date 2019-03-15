@@ -6,6 +6,7 @@ import { Injectable } from '@angular/core';
 export class InMemoryDataService {
 
   createDb() {
+    const users = [];
     const markers = [
       {
         "id": 0,
@@ -52,6 +53,6 @@ export class InMemoryDataService {
         }
       }
     ];
-    return { markers };
+    return { users, markers };
   }
 }

@@ -17,11 +17,25 @@
           </li>
         </ul>
         <ul class="navbar-nav ml-auto">
-          <li class="nav-item" [routerLinkActive]="['active']">
-            <a class="nav-link" [routerLink]="['user/signin']">Connexion</a>
+          <li class="nav-item" *ngIf="!authenticationService.isConnected()" [routerLinkActive]="['active']">
+            <a class="nav-link" [routerLink]="['/user/signin']">
+              Se connecter
+            </a>
           </li>
-          <li class="nav-item" [routerLinkActive]="['active']">
-            <a class="nav-link" [routerLink]="['user/signup']">Inscription</a>
+          <li class="nav-item" *ngIf="!authenticationService.isConnected()" [routerLinkActive]="['active']">
+            <a class="nav-link" [routerLink]="['/user/signup']">
+              Créer un compte
+            </a>
+          </li>
+          <li class="nav-item" *ngIf="authenticationService.isConnected()" [routerLinkActive]="['active']">
+            <a class="nav-link" [routerLink]="['/user/profile/', connectedUser.id]">
+              {{ connectedUser.firstName + ' ' + connectedUser.lastName }}
+            </a>
+          </li>
+          <li class="nav-item" *ngIf="authenticationService.isConnected()" [routerLinkActive]="['active']">
+            <a class="nav-link" href="javascript:void(0)" (click)="signout()">
+              Se déconnecter
+            </a>
           </li>
         </ul>
       </div>

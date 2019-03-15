@@ -3,7 +3,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { debounceTime } from 'rxjs/operators';
 import { User } from 'src/app/model/user';
 import { Router } from '@angular/router';
-import { UserService } from 'src/app/service/user.service';
+import { AuthenticationService } from 'src/app/service/authentication.service';
 
 @Component({
   selector: 'app-signin',
@@ -14,11 +14,13 @@ export class SigninComponent implements OnInit {
   signinForm: FormGroup;
   user: User;
   userNotFound: boolean = false;
+  email: string;
+  password: string;
   emailInvalidErrorMessage: string = "Veuillez introduire une adresse mail valide";
   passwordInvalidErrorMessage: string = "Le mot de passe doit avoir entre 4 et 40 caractères";
   userNotFoundErrorMessage: string = "Nom d'utilisateur ou mot de passe est invalide";
 
-  constructor(private fb: FormBuilder, private router: Router) {
+  constructor(private fb: FormBuilder, private router: Router, private authenticationService: AuthenticationService) {
     this.signinForm = fb.group({
       email: [
         "marouane.terai@ynov.com",
@@ -43,6 +45,26 @@ export class SigninComponent implements OnInit {
   }
 
   ngOnInit() {
+  }
+
+  signin(): void {
+    this.email = this.prepareSaveUser().email;
+    this.password = this.prepareSaveUser().password;
+    if (!this.prepareSaveUser()) {
+      return;
+    }
+    this.authenticationService.signin(this.email, this.password).subscribe(
+      data => {
+        if (!data) {
+          this.userNotFound = true;
+          return;
+        }
+        this.userNotFound = false;
+        console.log("Connected as: ", data);
+        this.router.navigate(["/home"]);
+      },
+      error => console.error(error)
+    );
   }
 
   prepareSaveUser(): any {
