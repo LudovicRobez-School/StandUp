@@ -1,9 +1,9 @@
 package com.event.services;
 
 
-import com.event.controllers.EventController;
-import com.event.models.Event;
-import com.user.controllers.UserController;
+import com.event.providers.EventProvider;
+import com.event.ressources.Event;
+import com.user.providers.UserProvider;
 import org.json.JSONObject;
 
 import javax.ws.rs.*;
@@ -20,7 +20,7 @@ public class EventService {
     @Produces(MediaType.APPLICATION_JSON )
     public Response GetAllEvents(){
         try{
-            return Response.ok(new EventController().getAllEvents()).build();
+            return Response.ok(new EventProvider().getAllEvents()).build();
         } catch (Exception e){
             return Response.status(404).build();
         }
@@ -32,7 +32,7 @@ public class EventService {
     @Produces(MediaType.APPLICATION_JSON )
     public Response GetEvent (@PathParam("id") int id){
         try{
-            Event event = new EventController().findEventById(id);
+            Event event = new EventProvider().findEventById(id);
             if (event == null){
                 return Response.status(400).build();
             }
@@ -50,9 +50,9 @@ public class EventService {
     public Response addEvent(String eventJson){
         try{
             JSONObject jsonEvent = new JSONObject(eventJson);
-            EventController eventProvider = new EventController();
-            UserController userProvider = new UserController();
-            Event event = new Event(jsonEvent.getString("name") ,userProvider.findUserbyId(jsonEvent.getInt("userId")),new SimpleDateFormat("dd-MMM-yyyy HH:mm:ss").parse(jsonEvent.getString("date")),jsonEvent.getLong("longitude"),jsonEvent.getLong("latitude"));
+            EventProvider eventProvider = new EventProvider();
+            UserProvider userProvider = new UserProvider();
+            Event event = new Event(jsonEvent.getString("name") ,userProvider.findUserById(jsonEvent.getInt("userId")),new SimpleDateFormat("dd-MMM-yyyy HH:mm:ss").parse(jsonEvent.getString("date")),jsonEvent.getLong("longitude"),jsonEvent.getLong("latitude"));
             eventProvider.addEvent(event);
             return Response.status(202).entity(event).build();
         } catch (Exception e){
@@ -61,17 +61,14 @@ public class EventService {
     }
 
     @PUT
-    @Path("/")
+    @Path("/{id}")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON )
-    public Response deleteEvent(String eventJson){
+    public Response deleteEvent(@PathParam("id") int id){
         try{
-            JSONObject jsonEvent = new JSONObject(eventJson);
-            EventController eventProvider = new EventController();
-            UserController userProvider = new UserController();
-            Event event = new Event(jsonEvent.getString("name") ,userProvider.findUserbyId(jsonEvent.getInt("userId")),new SimpleDateFormat("dd-MMM-yyyy HH:mm:ss").parse(jsonEvent.getString("date")),jsonEvent.getLong("longitude"),jsonEvent.getLong("latitude"));
-            eventProvider.deleteEvent(event);
-            return Response.ok(event).build();
+            EventProvider eventProvider = new EventProvider();
+            eventProvider.deleteEvent(id);
+            return Response.ok().build();
         } catch (Exception e){
             return Response.status(404).build();
         }

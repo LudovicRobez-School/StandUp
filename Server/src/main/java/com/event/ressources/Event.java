@@ -1,6 +1,6 @@
-package com.event.models;
+package com.event.ressources;
 
-import com.user.models.User;
+import com.user.ressources.User;
 
 import java.util.Date;
 
