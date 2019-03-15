@@ -13,17 +13,6 @@ export class InMemoryDataService {
         "type": "Feature",
         "geometry": {
           "type": "Point",
-          "coordinates": [5.4326399195801685, 43.52344798485697]
-        },
-        "properties": {
-          "message": "Vous êtes ici !"
-        }
-      },
-      {
-        "id": 1,
-        "type": "Feature",
-        "geometry": {
-          "type": "Point",
           "coordinates": [5.445221897487755, 43.526632425505056]
         },
         "properties": {
@@ -31,7 +20,7 @@ export class InMemoryDataService {
         }
       },
       {
-        "id": 2,
+        "id": 1,
         "type": "Feature",
         "geometry": {
           "type": "Point",
@@ -42,7 +31,7 @@ export class InMemoryDataService {
         }
       },
       {
-        "id": 3,
+        "id": 2,
         "type": "Feature",
         "geometry": {
           "type": "Point",
