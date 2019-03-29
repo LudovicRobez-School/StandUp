@@ -14,6 +14,7 @@ import { AboutComponent } from './about/about.component';
 import { UserModule } from './user/user.module';
 import { MapComponent } from './element/map/map.component';
 import { MapService } from './service/map.service';
+import { EventModule } from './event/event.module';
 
 @NgModule({
   declarations: [
@@ -28,10 +29,8 @@ import { MapService } from './service/map.service';
     BrowserModule,
     SharedModule,
     AppRoutingModule,
-    HttpClientInMemoryWebApiModule.forRoot(
-      InMemoryDataService, { dataEncapsulation: false }
-    ),
-    UserModule
+    UserModule,
+    EventModule
   ],
   providers: [MapService],
   bootstrap: [AppComponent]

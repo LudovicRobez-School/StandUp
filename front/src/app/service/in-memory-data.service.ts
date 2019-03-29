@@ -7,6 +7,17 @@ export class InMemoryDataService {
 
   createDb() {
     const users = [];
+    const events = [
+      {
+        "id": 0,
+        "userId": 0,
+        "title": "Spectacle Gad Elmaleh",
+        "address": "Ynov Aix en Provence",
+        "eventDate": Date.now(),
+        "created": Date.now(),
+        "modified": Date.now()
+      }
+    ];
     const markers = [
       {
         "id": 0,
@@ -42,6 +53,6 @@ export class InMemoryDataService {
         }
       }
     ];
-    return { users, markers };
+    return { users, events, markers };
   }
 }
