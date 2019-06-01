@@ -1,49 +1,67 @@
 <div class="container mt-2">
-  <div class="jumbotron jumbotron-bienvnue header-marg">
-    <h1 class="display-3 text-center mb-4">Bienvenue !</h1>
-    <div class="row">
-      <div class="col-sm-8 mx-auto">
-        <h4>
-          Vous êtes nouveau ?
-          <small class="text-muted">Inscrivez-vous:</small>
-          <hr>
-        </h4>
-        <form [formGroup]="signupForm" (ngSubmit)="signup()">
-          <div class="form-group row">
-            <div class="col-sm">
-              <input type="text" formControlName="email" class="form-control form-control-lg" id="email-id" placeholder="Adresse Email">
-              <div class="text-danger" *ngIf="!signupForm.controls['email'].valid && signupForm.controls['email'].touched">{{
+    <div class="jumbotron jumbotron-bienvnue header-marg">
+        <h1 class="display-3 text-center mb-4">Bienvenue !</h1>
+        <div class="row">
+            <div class="col-sm-8 mx-auto">
+                <h4>
+                    Vous êtes nouveau ?
+                    <small class="text-muted">Inscrivez-vous:</small>
+                    <hr>
+                </h4>
+                <form [formGroup]="signupForm" (ngSubmit)="signup()">
+                    <div class="form-group row">
+                        <div class="col-sm">
+                            <input type="text" formControlName="email" class="form-control form-control-lg"
+                                id="email-id" placeholder="Adresse Email">
+                            <div class="text-danger"
+                                *ngIf="!signupForm.controls['email'].valid && signupForm.controls['email'].touched">{{
                 emailInvalidErrorMessage }}</div>
-            </div>
-          </div>
-          <div class="form-group row">
-            <div class="col-sm">
-              <input type="password" formControlName="password" class="form-control form-control-lg" id="password-id" placeholder="Mot de passe">
-              <div class="text-danger" *ngIf="!signupForm.controls['password'].valid && signupForm.controls['password'].touched">{{
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-sm">
+                            <input type="password" formControlName="password" class="form-control form-control-lg"
+                                id="password-id" placeholder="Mot de passe">
+                            <div class="text-danger"
+                                *ngIf="!signupForm.controls['password'].valid && signupForm.controls['password'].touched">{{
                 passwordInvalidErrorMessage }}</div>
-            </div>
-          </div>
-          <div class="form-group row">
-            <div class="col-sm">
-              <input type="text" formControlName="firstName" class="form-control form-control-lg" id="firstName-id" placeholder="Prénom">
-              <div class="text-danger" *ngIf="!signupForm.controls['firstName'].valid && signupForm.controls['firstName'].touched">{{
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-sm">
+                            <input type="text" formControlName="firstName" class="form-control form-control-lg"
+                                id="firstName-id" placeholder="Prénom">
+                            <div class="text-danger"
+                                *ngIf="!signupForm.controls['firstName'].valid && signupForm.controls['firstName'].touched">{{
                 firstNameInvalidErrorMessage }}</div>
-            </div>
-          </div>
-          <div class="form-group row">
-            <div class="col-sm">
-              <input type="text" formControlName="lastName" class="form-control form-control-lg" id="lastName-id" placeholder="Nom">
-              <div class="text-danger" *ngIf="!signupForm.controls['lastName'].valid && signupForm.controls['lastName'].touched">{{
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-sm">
+                            <input type="text" formControlName="lastName" class="form-control form-control-lg"
+                                id="lastName-id" placeholder="Nom">
+                            <div class="text-danger"
+                                *ngIf="!signupForm.controls['lastName'].valid && signupForm.controls['lastName'].touched">{{
                 lastNameInvalidErrorMessage }}</div>
+                        </div>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" formControlName="userType" name="userType" id="inlineRadio1"
+                            value="Artiste">
+                        <label class="form-check-label" for="inlineRadio1">Artiste</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" formControlName="userType" name="userType" id="inlineRadio2"
+                            value="Fan" checked="checked">
+                        <label class="form-check-label" for="inlineRadio2">Fan</label>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-sm text-right">
+                            <button type="submit" class="btn btn-info btn-lg">S'inscrire</button>
+                        </div>
+                    </div>
+                </form>
             </div>
-          </div>
-          <div class="form-group row">
-            <div class="col-sm text-right">
-              <button type="submit" class="btn btn-info btn-lg">S'inscrire</button>
-            </div>
-          </div>
-        </form>
-      </div>
+        </div>
     </div>
-  </div>
 </div>

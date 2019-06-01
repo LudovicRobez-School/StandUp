@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { AuthenticationService } from 'src/app/service/authentication.service';
+import { AlertsService } from 'angular-alert-module';
 import { Router } from '@angular/router';
 import { debounceTime } from 'rxjs/operators';
 import { User } from 'src/app/model/user';
@@ -19,7 +20,7 @@ export class SignupComponent implements OnInit {
   firstNameInvalidErrorMessage: string = "Le prénom doit avoir entre 3 et 30 caractères";
   lastNameInvalidErrorMessage: string = "Le nom doit avoir entre 3 et 30 caractères";
 
-  constructor(private fb: FormBuilder, private authenticationService: AuthenticationService, private router: Router, private userService: UserService) {
+  constructor(private fb: FormBuilder, private authenticationService: AuthenticationService, private router: Router, private userService: UserService, private alertsService: AlertsService) {
     this.signupForm = fb.group({
       email: [
         "marouane.terai@ynov.com",
@@ -51,6 +52,12 @@ export class SignupComponent implements OnInit {
           Validators.minLength(3),
           Validators.maxLength(30)
         ])
+      ],
+      userType: [
+        "Fan",
+        Validators.compose([
+          Validators.required,
+        ])
       ]
     });
 
@@ -60,6 +67,7 @@ export class SignupComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.alertsService.setDefaults('timeout',3);
     // Redirect user to home page if connected
     if (this.authenticationService.isConnected()) {
       this.router.navigate(['/home']);
@@ -74,6 +82,7 @@ export class SignupComponent implements OnInit {
     }
     this.userService.addUser(this.user).subscribe(
       data => {
+        this.alertsService.setMessage('Votre inscription a bien été enregistrée','success');
         console.log("success");
         this.router.navigate(["/user/signin"]);
       },
@@ -90,6 +99,7 @@ export class SignupComponent implements OnInit {
       password: this.signupForm.controls["password"].value as string,
       firstName: this.signupForm.controls["firstName"].value as string,
       lastName: this.signupForm.controls["lastName"].value as string,
+      userType: this.signupForm.controls["userType"].value as string,
       created: new Date(Date.now()),
       modified: new Date(Date.now())
     };

@@ -4,6 +4,7 @@ import { debounceTime } from 'rxjs/operators';
 import { User } from 'src/app/model/user';
 import { Router } from '@angular/router';
 import { AuthenticationService } from 'src/app/service/authentication.service';
+import { AlertsService } from 'angular-alert-module';
 
 @Component({
   selector: 'app-signin',
@@ -20,7 +21,7 @@ export class SigninComponent implements OnInit {
   passwordInvalidErrorMessage: string = "Le mot de passe doit avoir entre 4 et 40 caractères";
   userNotFoundErrorMessage: string = "Nom d'utilisateur ou mot de passe est invalide";
 
-  constructor(private fb: FormBuilder, private router: Router, private authenticationService: AuthenticationService) {
+  constructor(private fb: FormBuilder, private router: Router, private authenticationService: AuthenticationService, private alertsService: AlertsService) {
     this.signinForm = fb.group({
       email: [
         "marouane.terai@ynov.com",
@@ -45,6 +46,7 @@ export class SigninComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.alertsService.setDefaults('timeout',3);
   }
 
   signin(): void {
@@ -61,6 +63,7 @@ export class SigninComponent implements OnInit {
         }
         this.userNotFound = false;
         console.log("Connected as: ", data);
+        this.alertsService.setMessage('Bienvenue ' + data.firstName + ' ' + data.lastName + ' sur StandUp','success');
         this.router.navigate(["/home"]);
       },
       error => console.error(error)

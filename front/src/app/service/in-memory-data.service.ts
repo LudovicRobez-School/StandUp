@@ -6,7 +6,18 @@ import { Injectable } from '@angular/core';
 export class InMemoryDataService {
 
   createDb() {
-    const users = [];
+    const users = [
+      {
+        "created": "2019-06-01T16:26:13.139Z",
+        "email": "marouane.terai@ynov.com",
+        "firstName": "Marouane",
+        "id": 124605,
+        "lastName": "Terai",
+        "modified": "2019-06-01T16:26:13.139Z",
+        "password": "1234",
+        "userType": "Artiste"
+      }
+    ];
     const markers = [
       {
         "id": 0,

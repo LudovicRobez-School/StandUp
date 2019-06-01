@@ -1,3 +1,5 @@
+import { UserType } from "./user-type";
+
 export class User {
     id?: number;
     email?: string;
@@ -5,11 +7,11 @@ export class User {
     username?: string;
     firstName?: string;
     lastName?: string;
-    userType?: Array<number>;
+    userType?: string;
     created?: Date;
     modified?: Date;
 
-    constructor(id?: number, email?: string, password?: string, username?: string, firstName?: string, lastName?: string, userType?: Array<number>, created?: Date, modified?: Date) {
+    constructor(id?: number, email?: string, password?: string, username?: string, firstName?: string, lastName?: string, userType?: string, created?: Date, modified?: Date) {
         this.id = id;
         this.email = email;
         this.password = password;
